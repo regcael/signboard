@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SignBoard: A one-page portfolio website for your business</title>
+<meta name="description" content="SignBoard builds a one-page portfolio website for your business, with hosting included.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0F2A3D; --sign:#FFC83D; --paper:#FAFAF7; --chalk:#5B6B76; --line:#D9DEE1; --card:#FFFFFF; --blue:#6495ed;
+  --head:"Archivo Black","Arial Black",Impact,sans-serif;
+  --body:"Source Sans 3","Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --ink:#EAF0F3; --paper:#0B1A26; --chalk:#9DB0BC; --line:#23394A; --card:#112636; --blue:#6495ed; }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:16px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.55;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+h1,h2,h3{font-family:var(--head);font-weight:400;line-height:1.1;margin:0}
+p{margin:0 0 .8em;max-width:62ch}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sign);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+section{padding:56px 0}
+
+/* header with the fixed WhatsApp button */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 0}
+.brand{font-family:var(--head);font-size:1.25rem;text-decoration:none}
+.btn{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#06210F;font-weight:600;text-decoration:none;
+  padding:10px 16px;border-radius:8px;border:0;font-size:1rem;font-family:var(--body);cursor:pointer;
+  box-shadow:0 5px 0 #1A9E4E,0 9px 14px rgba(0,0,0,.2);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translateY(2px);box-shadow:0 3px 0 #1A9E4E,0 6px 10px rgba(0,0,0,.2)}
+.btn:active{transform:translateY(5px);box-shadow:0 0 0 #1A9E4E,0 2px 4px rgba(0,0,0,.2)}
+.btn svg{width:20px;height:20px;fill:currentColor}
+
+/* hero: the signboard */
+.hero{padding:24px 0 56px}
+.board{position:relative;background:var(--sign);color:#0F2A3D;border:6px solid #0F2A3D;border-radius:6px;
+  padding:48px 28px 40px;box-shadow:0 0 0 4px var(--sign);text-align:center}
+.board::before,.board::after{content:"";position:absolute;top:14px;width:12px;height:12px;border-radius:50%;background:#0F2A3D}
+.board::before{left:14px}.board::after{right:14px}
+.board h1{font-size:clamp(3rem,13vw,7.5rem);letter-spacing:-.01em}
+.board p{font-size:clamp(1.15rem,3vw,1.6rem);font-weight:600;margin:14px auto 0}
+.sub{margin-top:28px;color:var(--chalk)}
+.host{border-left:6px solid var(--blue);padding-left:14px;margin-top:18px}
+.host strong{display:inline-block;background:var(--blue);color:#FFFFFF;text-shadow:0 1px 2px rgba(0,0,0,.3);padding:2px 10px;border-radius:4px;font-family:var(--head);font-weight:400;font-size:clamp(1.3rem,3.5vw,1.8rem);line-height:1.2;margin-bottom:6px}
+.host span{color:var(--chalk);font-size:.98rem}
+.tag{display:inline-block;background:var(--blue);color:#FFFFFF;text-shadow:0 1px 2px rgba(0,0,0,.3);font-weight:600;font-size:.95rem;padding:4px 10px;border-radius:4px;margin:0 0 4px}
+
+h2{font-size:clamp(1.6rem,4vw,2.3rem);margin-bottom:10px}
+.lead{color:var(--chalk);margin-bottom:28px}
+
+/* packages: highest price on the left */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.plan{background:var(--card);border:1px solid var(--line);border-top:8px solid var(--ink);border-radius:4px;padding:24px;display:flex;flex-direction:column}
+.plan:nth-child(1){border-top-color:#FF8A1F}
+.plan:nth-child(2){border-top-color:var(--blue)}
+.plan:nth-child(3){border-top-color:var(--sign)}
+.plan h3{font-size:1.4rem}
+.price{font-family:var(--head);font-size:2.4rem;margin:8px 0 4px}
+.price small{font-family:var(--body);font-size:1rem;color:var(--chalk)}
+.plan ul{padding-left:20px;margin:14px 0 22px}
+.plan li{margin-bottom:6px}
+.plan .btn{margin-top:auto;justify-content:center;background:var(--sign);color:#0F2A3D;
+  box-shadow:0 5px 0 #C9970F,0 9px 14px rgba(0,0,0,.2)}
+.plan .btn:hover{box-shadow:0 3px 0 #C9970F,0 6px 10px rgba(0,0,0,.2)}
+.plan .btn:active{box-shadow:0 0 0 #C9970F,0 2px 4px rgba(0,0,0,.2)}
+/* Floating package: orange, gently bobbing button */
+.plan:nth-child(1) .btn{background:#FF8A1F;color:#FFFFFF;text-shadow:0 1px 2px rgba(0,0,0,.3);box-shadow:0 5px 0 #C25E00,0 9px 14px rgba(0,0,0,.2);animation:bob 1.8s ease-in-out infinite}
+.plan:nth-child(1) .btn:hover{animation:none;box-shadow:0 3px 0 #C25E00,0 6px 10px rgba(0,0,0,.2)}
+.plan:nth-child(1) .btn:active{box-shadow:0 0 0 #C25E00,0 2px 4px rgba(0,0,0,.2)}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@media (prefers-reduced-motion:reduce){.plan:nth-child(1) .btn{animation:none}}
+.band{background:var(--bandc);box-shadow:0 0 0 100vmax var(--bandc);clip-path:inset(0 -100vmax)}
+.band.blue{--bandc:rgba(100,149,237,.14)}
+.band.sun{--bandc:rgba(255,200,61,.18)}
+
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:12px;max-width:62ch}
+.steps li{counter-increment:s;padding-left:44px;position:relative}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;
+  background:var(--ink);color:var(--paper);font-family:var(--head);display:grid;place-items:center;font-size:.95rem}
+
+.steps li:nth-child(1)::before{background:var(--blue);color:#FFFFFF}
+.steps li:nth-child(2)::before{background:#FF8A1F;color:#0F2A3D}
+.steps li:nth-child(3)::before{background:var(--sign);color:#0F2A3D}
+.terms{border-top:1px solid var(--line)}
+.terms ol{padding-left:22px;max-width:70ch}
+.terms li{margin-bottom:8px}
+footer{border-top:1px solid var(--line);padding:28px 0 96px;color:var(--chalk);font-size:.95rem}
+
+/* floating WhatsApp button */
+.float{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:60px;height:60px;border-radius:50%;
+  background:#25D366;color:#06210F;display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.3);z-index:20}
+.float svg{width:32px;height:32px;fill:currentColor}
+
+@media (max-width:820px){
+  .plans{grid-template-columns:1fr}
+  .top .btn span{display:none}
+  .top .btn{padding:10px}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="wa" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.14-1.18-.06-.1-.23-.16-.48-.29Z"/></symbol>
+</svg>
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#top">SignBoard</a>
+    <!-- Fixed WhatsApp button: sits in the page header -->
+    <a class="btn wa-link" data-msg="Hi, I'd like to know more about SignBoard." href="#" target="_blank" rel="noopener">
+      <svg aria-hidden="true"><use href="#wa"/></svg><span>Chat on WhatsApp</span>
+      <span class="sr" style="position:absolute;left:-9999px">Chat on WhatsApp</span>
+    </a>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div class="board">
+        <h1>SignBoard</h1>
+        <p>A one-page portfolio website for your business</p>
+      </div>
+      <p class="sub">Your projects and social media, together on one clean page.</p>
+      <p class="host"><strong>Hosting included, no monthly fee.</strong><span>The page uses a free web address. A custom domain isn't included and is available as a quoted extra.</span></p>
+    </div>
+
+    <section id="packages" class="band blue">
+      <h2>Choose a package</h2>
+      <p class="lead">Each package includes everything in the one to its right.</p>
+      <div class="plans">
+        <article class="plan">
+          <h3>Floating</h3>
+          <div class="price">₹5,999</div>
+          <p class="tag">Hosting included, no monthly fee</p>
+          <ul>
+            <li>Everything in Fixed</li>
+            <li>A floating WhatsApp button that stays on screen as visitors scroll</li>
+          </ul>
+          <a class="btn wa-link" data-msg="Hi, I'm interested in the SignBoard Floating package (₹5,999)." href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Ask on WhatsApp</a>
+        </article>
+        <article class="plan">
+          <h3>Fixed</h3>
+          <div class="price">₹4,999</div>
+          <p class="tag">Hosting included, no monthly fee</p>
+          <ul>
+            <li>Everything in Portfolio</li>
+            <li>A WhatsApp button placed on your page, in the header</li>
+          </ul>
+          <a class="btn wa-link" data-msg="Hi, I'm interested in the SignBoard Fixed package (₹4,999)." href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Ask on WhatsApp</a>
+        </article>
+        <article class="plan">
+          <h3>Portfolio</h3>
+          <div class="price">₹3,999</div>
+          <p class="tag">Hosting included, no monthly fee</p>
+          <ul>
+            <li>One-page website with a short welcome line</li>
+            <li>Your projects, shown from one of your social media accounts</li>
+            <li>Links to your social media</li>
+          </ul>
+          <a class="btn wa-link" data-msg="Hi, I'm interested in the SignBoard Portfolio package (₹3,999)." href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Ask on WhatsApp</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="how" class="band sun">
+      <h2>How it works</h2>
+      <ol class="steps">
+        <li>Message us on WhatsApp and tell us which package you want.</li>
+        <li>Pay 50% to start. After payment, we continue by email.</li>
+        <li>Check your page, approve it, pay the remaining 50%, and it goes live.</li>
+      </ol>
+    </section>
+
+    <section class="terms" id="terms">
+      <h2>Short terms</h2>
+      <ol>
+        <li><strong>What you get:</strong> a one-page website for your business, with hosting included and no monthly fee.</li>
+        <li><strong>Fee:</strong> as listed for your package. 50% to start and 50% before the page goes live. The first 50% is non-refundable once the build starts.</li>
+        <li><strong>Content:</strong> a short welcome line, your social media bio if you have one, and posts from one of your social media accounts shown on the page. We don't copy or download your photos.</li>
+        <li><strong>Approval:</strong> you approve the page before it goes live.</li>
+        <li><strong>Changes:</strong> our involvement ends at handover. Later changes are a separate quote.</li>
+        <li><strong>Ownership:</strong> the website and its hosting stay with SignBoard. Your content stays yours. Moving the site to another host is a separate build, by SignBoard or by someone you hire.</li>
+        <li><strong>Address:</strong> the site uses a free web address. A custom domain is not included and is a quoted extra.</li>
+        <li><strong>No promised results:</strong> the page is a professional presence for your business and doesn't promise enquiries or sales. It shows your social media posts, so if you make your account private or delete posts, they won't appear on the page.</li>
+        <li><strong>Communication:</strong> by email after payment, with a reply within one working day.</li>
+      </ol>
+    </section>
+
+    <section class="terms" id="privacy">
+      <h2>Privacy</h2>
+      <ol>
+        <li><strong>What we collect:</strong> the details you share so we can build your page: your name, business name, contact details, the link to your social media account, and payment confirmations.</li>
+        <li><strong>How we use it:</strong> only to talk to you, build and host your page, and keep payment records. We don't sell your details or share them for advertising.</li>
+        <li><strong>Your social media posts:</strong> your page shows posts from one of your own accounts. We don't copy or download your photos. They stay on your account.</li>
+        <li><strong>Other services involved:</strong> messages before payment go through WhatsApp, which has its own privacy policy. This page loads its fonts from Google Fonts, and your page is stored with a hosting provider.</li>
+        <li><strong>Keeping and deleting:</strong> we keep your details only as long as needed to deliver your page and for our records. To ask us to delete your details, message us on WhatsApp or email us.</li>
+        <li><strong>This website:</strong> it has no sign-up, no tracking and no analytics.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>SignBoard. A one-page portfolio website for your business.</footer>
+</div>
+
+<!-- Floating WhatsApp button: stays on screen while scrolling -->
+<a class="float wa-link" data-msg="Hi, I'd like to know more about SignBoard." href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg aria-hidden="true"><use href="#wa"/></svg>
+</a>
+
+<script>
+  // Replace with your WhatsApp number: country code + number, digits only (for example 919XXXXXXXXX)
+  var WHATSAPP_NUMBER = "91XXXXXXXXXX";
+  document.querySelectorAll(".wa-link").forEach(function (a) {
+    a.href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(a.getAttribute("data-msg") || "");
+  });
+</script>
+</body>
+</html>
