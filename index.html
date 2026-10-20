@@ -59,8 +59,8 @@ h2{font-size:clamp(1.6rem,4vw,2.3rem);margin-bottom:10px}
 .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
 .plan{background:var(--card);border:1px solid var(--line);border-top:8px solid var(--ink);border-radius:4px;padding:24px;display:flex;flex-direction:column}
 .plan:nth-child(1){border-top-color:#FF8A1F}
-.plan:nth-child(2){border-top-color:var(--blue)}
-.plan:nth-child(3){border-top-color:var(--sign)}
+.plan:nth-child(2){border-top-color:var(--sign)}
+.plan:nth-child(3){border-top-color:#25D366}
 .plan h3{font-size:1.4rem}
 .price{font-family:var(--head);font-size:2.4rem;margin:8px 0 4px}
 .price small{font-family:var(--body);font-size:1rem;color:var(--chalk)}
@@ -70,10 +70,14 @@ h2{font-size:clamp(1.6rem,4vw,2.3rem);margin-bottom:10px}
   box-shadow:0 5px 0 #C9970F,0 9px 14px rgba(0,0,0,.2)}
 .plan .btn:hover{box-shadow:0 3px 0 #C9970F,0 6px 10px rgba(0,0,0,.2)}
 .plan .btn:active{box-shadow:0 0 0 #C9970F,0 2px 4px rgba(0,0,0,.2)}
-/* Floating package: orange, gently bobbing button */
+/* Neon package: orange, gently bobbing button */
 .plan:nth-child(1) .btn{background:#FF8A1F;color:#FFFFFF;text-shadow:0 1px 2px rgba(0,0,0,.3);box-shadow:0 5px 0 #C25E00,0 9px 14px rgba(0,0,0,.2);animation:bob 1.8s ease-in-out infinite}
 .plan:nth-child(1) .btn:hover{animation:none;box-shadow:0 3px 0 #C25E00,0 6px 10px rgba(0,0,0,.2)}
 .plan:nth-child(1) .btn:active{box-shadow:0 0 0 #C25E00,0 2px 4px rgba(0,0,0,.2)}
+/* Lit package: yellow button (default above). Plain package: green button */
+.plan:nth-child(3) .btn{background:#25D366;color:#06210F;box-shadow:0 5px 0 #1A9E4E,0 9px 14px rgba(0,0,0,.2)}
+.plan:nth-child(3) .btn:hover{box-shadow:0 3px 0 #1A9E4E,0 6px 10px rgba(0,0,0,.2)}
+.plan:nth-child(3) .btn:active{box-shadow:0 0 0 #1A9E4E,0 2px 4px rgba(0,0,0,.2)}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 @media (prefers-reduced-motion:reduce){.plan:nth-child(1) .btn{animation:none}}
 .band{background:var(--bandc);box-shadow:0 0 0 100vmax var(--bandc);clip-path:inset(0 -100vmax)}
@@ -127,7 +131,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 96px;color:var(--chalk);f
         <p>A one-page portfolio website for your business</p>
       </div>
       <p class="sub">Your projects and social media, together on one clean page.</p>
-      <p class="host"><strong>Hosting included, no monthly fee.</strong><span> <p>The page uses a free web address. A custom domain is available on request as a quoted extra.</p></span></p>
+      <p class="host"><strong>Hosting included, no monthly fee.</strong><span>The page uses a free web address. A custom domain is available on request as a quoted extra.</span></p>
     </div>
 
     <section id="packages" class="band blue">
@@ -135,35 +139,35 @@ footer{border-top:1px solid var(--line);padding:28px 0 96px;color:var(--chalk);f
       <p class="lead">Each package includes everything in the one to its right.</p>
       <div class="plans">
         <article class="plan">
-          <h3>Floating</h3>
+          <h3>Neon</h3>
           <div class="price">₹5,999</div>
           <p class="tag">Hosting included, no monthly fee</p>
           <ul>
-            <li>Everything in Fixed</li>
+            <li>Everything in Lit</li>
             <li>A floating WhatsApp button that stays on screen as visitors scroll</li>
           </ul>
-          <a class="btn wa-link" data-msg="Hi, I'm interested in the SignBoard Floating package (₹5,999)." href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Ask on WhatsApp</a>
+          <a class="btn wa-link" data-msg="Hi, I'm interested in the SignBoard Neon package (₹5,999)." href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Message us to get started</a>
         </article>
         <article class="plan">
-          <h3>Fixed</h3>
+          <h3>Lit</h3>
           <div class="price">₹4,999</div>
           <p class="tag">Hosting included, no monthly fee</p>
           <ul>
-            <li>Everything in Portfolio</li>
+            <li>Everything in Plain</li>
             <li>A WhatsApp button placed on your page, in the header</li>
           </ul>
-          <a class="btn wa-link" data-msg="Hi, I'm interested in the SignBoard Fixed package (₹4,999)." href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Ask on WhatsApp</a>
+          <a class="btn wa-link" data-msg="Hi, I'm interested in the SignBoard Lit package (₹4,999)." href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Message us to get started</a>
         </article>
         <article class="plan">
-          <h3>Portfolio</h3>
+          <h3>Plain</h3>
           <div class="price">₹3,999</div>
           <p class="tag">Hosting included, no monthly fee</p>
           <ul>
             <li>One-page website with a short welcome line</li>
-            <li>Your projects, portfolio</li>
+            <li>Your projects and portfolio</li>
             <li>Links to your social media</li>
           </ul>
-          <a class="btn wa-link" data-msg="Hi, I'm interested in the SignBoard Portfolio package (₹3,999)." href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Ask on WhatsApp</a>
+          <a class="btn wa-link" data-msg="Hi, I'm interested in the SignBoard Plain package (₹3,999)." href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Message us to get started</a>
         </article>
       </div>
     </section>
