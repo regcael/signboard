@@ -50,6 +50,7 @@ section{padding:56px 0}
 
 h2{font-size:clamp(1.6rem,4vw,2.3rem);margin-bottom:10px}
 .lead{color:var(--chalk);margin-bottom:28px}
+#packages h2{text-align:center;margin-bottom:32px}
 
 /* packages: highest price on the left */
 .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
@@ -57,6 +58,11 @@ h2{font-size:clamp(1.6rem,4vw,2.3rem);margin-bottom:10px}
 .plan:nth-child(1){border-top-color:#FF8A1F}
 .plan:nth-child(2){border-top-color:var(--sign)}
 .plan:nth-child(3){border-top-color:#25D366}
+.plan:nth-child(1){position:relative;background-image:linear-gradient(rgba(255,138,31,.26),rgba(255,138,31,.26));border-color:#FF8A1F;box-shadow:0 10px 24px rgba(0,0,0,.14)}
+.badge{position:absolute;top:-15px;left:16px;letter-spacing:.04em;background:#FF8A1F;color:#FFFFFF;text-shadow:0 1px 2px rgba(0,0,0,.35);font-weight:600;font-size:.935rem;padding:5px 14px;border-radius:999px;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+@media (min-width:821px){.plan:nth-child(1){transform:translateY(-8px);box-shadow:0 16px 30px rgba(0,0,0,.2)}}
+.plan:nth-child(2){position:relative}
+.badge.lit{background:var(--sign);color:#0F2A3D;text-shadow:none;top:-15px}
 .plan h3{font-size:1.4rem}
 .price{font-family:var(--head);font-size:2.4rem;margin:8px 0 4px}
 .price small{font-family:var(--body);font-size:1rem;color:var(--chalk)}
@@ -133,6 +139,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 96px;color:var(--chalk);f
    
       <div class="plans">
         <article class="plan">
+          <span class="badge">✨ BEST VALUE</span>
           <h3>Neon</h3>
           <div class="price">₹5,999</div>
           <p class="tag">Hosting included</p>
@@ -144,6 +151,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 96px;color:var(--chalk);f
           <a class="btn wa-link" data-msg="Hi, I'm interested in the SignBoard Neon package (₹5,999)." href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Choose Neon</a>
         </article>
         <article class="plan">
+          <span class="badge lit">Recommended</span>
           <h3>Lit</h3>
           <div class="price">₹5,499</div>
           <p class="tag">Hosting included</p>
@@ -152,7 +160,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 96px;color:var(--chalk);f
             <li>Image Logo in the header</li>
             <li>A WhatsApp button in the header</li>
           </ul>
-          <a class="btn wa-link" data-msg="Hi, I'm interested in the SignBoard Lit package (₹4,999)." href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Choose Lit</a>
+          <a class="btn wa-link" data-msg="Hi, I'm interested in the SignBoard Lit package (₹5,499)." href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Choose Lit</a>
         </article>
         <article class="plan">
           <h3>Plain</h3>
